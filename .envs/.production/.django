@@ -1,0 +1,7 @@
+PROJECT_NAME=name_api
+DJANGO_SETTINGS_MODULE=config.settings.production
+SECRET_KEY=59f!_a(d79j#^fa*ckrap7l1-2xu=$@&hh_#7h)ei5m)%k8u2#
+DEBUG=True                      # it is temporary
+SERVER_IP=3.108.65.1
+SERVER_DOMAIN=.com
+

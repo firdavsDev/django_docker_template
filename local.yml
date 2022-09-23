@@ -1,0 +1,72 @@
+version: '3'
+
+volumes:
+  local_postgres_data: { }
+  local_postgres_data_backups: { }
+  pgadmin-data: { }
+
+services:
+  django: &django
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    image: name_django
+    container_name: django
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app:cached
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+    ports:
+      - "8000:8000"
+    command: /start
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+    image: name_postgres
+    container_name: postgres
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data:cached
+      - local_postgres_data_backups:/backups:cached
+    env_file:
+      - ./.envs/.local/.postgres
+
+  redis:
+    image: redis:6.2-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: 
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    command: celery -A config worker -l info
+    volumes:
+      - .:/app:cached
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+    depends_on:
+      - postgres
+      - redis
+
+  celery-beat:
+    build: 
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    command: celery -A config beat -l info
+    volumes:
+       - .:/app:cached
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+    depends_on:
+      - redis
+      - postgres
+
+

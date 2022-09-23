@@ -1,0 +1,59 @@
+# Users
+
+
+- model: "user.User"
+  pk: 1
+  fields:
+    email: "admin1@gmail.com"
+    password: "12345678Da"
+    role: "planner"
+
+- model: "user.User"
+  pk: 2
+  fields:
+    email: "admin2@gmail.com"
+    password: "12345678Da"
+    role: "planner"
+
+- model: "user.User"
+  pk: 3
+  fields:
+    email: "adminr3@gmail.com"
+    password: "12345678Da"
+    role: "planner"
+
+- model: "user.User"
+  pk: 4
+  fields:
+    email: "admin4@gmail.com"
+    password: "12345678Da"
+    role: "sales_manager"
+
+- model: "user.User"
+  pk: 5
+  fields:
+    email: "admin5@gmail.com"
+    password: "12345678Da"
+    role: "sales_manager"
+
+- model: "user.User"
+  pk: 6
+  fields:
+    email: "admin6@gmail.com"
+    password: "12345678Da"
+    role: "sales_manager"
+    
+- model: "user.User"
+  pk: 7
+  fields:
+    email: "admin7@gmail.com"
+    password: "12345678Da"
+    role: "sales_manager"
+    
+- model: "user.User"
+  pk: 8
+  fields:
+    email: "admin8@gmail.com"
+    password: "12345678Da"
+    role: "sales_manager"
+    
