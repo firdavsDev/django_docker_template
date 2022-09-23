@@ -38,6 +38,10 @@ This project has the following prerequisites
 
 ## Setup
 
+- Type the command below to setup the project locally:
+
+-  docker-compose -f local.yml up --build
+
 ### Development
 
 - Install virtual environment:
