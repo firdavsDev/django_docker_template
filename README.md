@@ -1,4 +1,4 @@
-![Django project](https://github.com/CyberspaceUZ/name_api.git)
+![Django project](https://github.com/name/name_api.git)
 
 # Name EXTENSION API
 
