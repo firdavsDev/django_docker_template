@@ -1,5 +1,5 @@
 POSTGRES_HOST=postgres
 POSTGRES_PORT=5432
-POSTGRES_DB=odoo_extension_api_db
-POSTGRES_USER=odoo_extension_api_user
+POSTGRES_DB=name_api_db
+POSTGRES_USER=name_api_user
 POSTGRES_PASSWORD=$kbod%eo41s^m^vcrgv@h8y+=*!_9%6cs5*g2wp%hjv+lhy1=)
