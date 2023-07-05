@@ -33,6 +33,8 @@ user_login_api_view = UserObtainTokenAPIView.as_view()
 
 
 class LogoutAPIView(APIView):
+    serializer_class = None
+    
     def get(self, request):
         request.user.auth_token.delete()
 

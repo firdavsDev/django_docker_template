@@ -19,6 +19,7 @@ Folder Structure Conventions
     ├── local.yml               # docker-compose (running in local)
     ├── production.yml          # docker-compose (to deploy in production)
     └── README.md
+    └── ...
 
 ## Outline
 
@@ -47,7 +48,7 @@ This project has the following prerequisites
 - Install virtual environment:
 
 ```
-git clone https://github.com/CyberspaceUZ/name_api.git
+git clone https://github.com/orginazation/name_api.git
 cd root folder
 python -m venv --prompt="v" .env
 ```

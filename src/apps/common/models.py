@@ -13,9 +13,3 @@ class BaseModel(models.Model):
 class RoleChoice(models.TextChoices):
     PLANNER = "planner", _("planner")
     SALES_MANAGER = "sales_manager", _("sales_manager")
-
-
-class ProcessChoice(models.TextChoices):
-    CHANGEMATERIAL = "CHANGEMATERIAL", _("CHANGEMATERIAL")
-    CREATEMATERIAL = "CREATEMATERIAL", _("CREATEMATERIAL")
-
