@@ -176,22 +176,40 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
+# Define the log handlers
+handlers = {
+    'console': {
+        'level': 'WARNING',
+        'class': 'logging.StreamHandler',
+    },
+    'file': {
+        'level': 'WARNING',
+        'class': 'logging.handlers.RotatingFileHandler',
+        'filename': 'logs/django.log',
+        'formatter': 'verbose',
+        'maxBytes': 1024 * 1024 * 10,  # 10 MB
+        'backupCount': 5,  # Number of backup log files to keep
+    },
+}
+
+
+# Define the log formatters
+formatters = {
+    'verbose': {
+        'format': '%(levelname)s %(asctime)s %(name)s %(message)s',
+    },
+}
+
+# Configure logging
 LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "format": "%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s",
-        },
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': handlers,
+    'formatters': formatters,
+    'root': {
+        'level': 'INFO',
+        'handlers': ['console', 'file'],
     },
-    "handlers": {
-        "console": {
-            "level": "DEBUG",
-            "class": "logging.StreamHandler",
-            "formatter": "verbose",
-        }
-    },
-    "root": {"level": "INFO", "handlers": ["console"]},
 }
 
 CACHES = {
