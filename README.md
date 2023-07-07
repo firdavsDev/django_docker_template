@@ -67,3 +67,7 @@ docker-compose -f local.yml up -d
 ```
 
 - You should be good to go now
+- http://localhost:8000
+
+### Production
+- https://github.com/firdavsDev/docker-template-deployment
