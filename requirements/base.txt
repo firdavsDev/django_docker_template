@@ -23,7 +23,7 @@ psycopg2-binary==2.9.2 # https://pypi.org/project/psycopg2-binary/
 
 #Backgound Task (cellery)
 celery==5.1.2
-redis==3.5.3
+redis==5.0.5
 
 #Celery monitoring https://cronitor.io/
 cronitor==4.5.0
