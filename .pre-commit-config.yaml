@@ -1,14 +1,29 @@
 exclude: '(\.eggs|\.git|\.hg|\.mypy_cache|\.pytest_cache|\.tox|\.venv|venv|.env|env|\.vscode|static|media/|deployments|scripts|requirements|.*/templates|.*/migrations)'
 repos:
--   repo: https://github.com/pycqa/isort
-    rev: 5.3.2
-    hooks:
-    -   id: isort
--   repo: https://github.com/ambv/black
-    rev: stable
-    hooks:
-    -   id: black
--   repo: https://gitlab.com/pycqa/flake8
-    rev: 3.8.3
-    hooks:
-    -   id: flake8
+    - repo: local
+      hooks:
+          - id: autoflake
+            name: Remove unused variables and imports
+            entry: bash -c 'autoflake "$@"; git add -u' --
+            language: python
+            args:
+                [
+                    "--in-place",
+                    "--remove-all-unused-imports",
+                    "--remove-unused-variables",
+                    "--expand-star-imports",
+                    "--ignore-init-module-imports",
+                ]
+            files: \.py$
+          # - id: isort
+          #   name: Sorting import statements
+          #   entry: bash -c 'isort "$@"; git add -u' --
+          #   language: python
+          #   args: ["--filter-files"]
+          #   files: \.py$
+          # - id: black
+          #   name: Black Python code formatting
+          #   entry: bash -c 'black "$@"; git add -u' --
+          #   language: python
+          #   types: [python]
+          #   args: ["--line-length=120"]

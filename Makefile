@@ -34,3 +34,15 @@ shell:
 
 restart:
 	docker-compose -f local.yml restart
+
+backup:
+	docker compose -f local.yml exec postgres backup
+
+backups:
+	docker compose -f local.yml exec postgres backups
+
+copy-backups:
+	docker cp $(docker compose -f local.yml ps -q postgres):/backups ./backups
+
+restore:
+	docker compose -f local.yml exec postgres restore file_name.sql.gz

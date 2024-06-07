@@ -15,6 +15,23 @@ urlpatterns = [
         SpectacularSwaggerView.as_view(url_name="api-schema"),
         name="api-docs",
     ),
+    # Error views
+    path(
+        "400/",
+        default_views.bad_request,
+        kwargs={"exception": Exception("Bad Request!")},
+    ),
+    path(
+        "403/",
+        default_views.permission_denied,
+        kwargs={"exception": Exception("Permission Denied")},
+    ),
+    path(
+        "404/",
+        default_views.page_not_found,
+        kwargs={"exception": Exception("Page not Found")},
+    ),
+    path("500/", default_views.server_error),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
@@ -25,20 +42,5 @@ if settings.DEBUG:
     # these url in browser to see how these error pages look like.
     urlpatterns += [
         path('__debug__/', include('debug_toolbar.urls')),
-        path(
-            "400/",
-            default_views.bad_request,
-            kwargs={"exception": Exception("Bad Request!")},
-        ),
-        path(
-            "403/",
-            default_views.permission_denied,
-            kwargs={"exception": Exception("Permission Denied")},
-        ),
-        path(
-            "404/",
-            default_views.page_not_found,
-            kwargs={"exception": Exception("Page not Found")},
-        ),
-        path("500/", default_views.server_error),
+
     ]

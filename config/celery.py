@@ -10,6 +10,6 @@ app = Celery('config')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
-#Celery monitoring
+# Celery monitoring (https://cronitor.io/)
 cronitor.api_key = os.environ["CRONITOR_API_KEY"]
 cronitor.celery.initialize(app)

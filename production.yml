@@ -1,11 +1,11 @@
-version: '3'
+version: "3"
 
 volumes:
   static_volume:
   media_volume:
   certs:
-  local_postgres_data: { }
-  local_postgres_data_backups: { }
+  local_postgres_data: {}
+  local_postgres_data_backups: {}
 
 services:
   django: &django
@@ -57,7 +57,7 @@ services:
 
   redis:
     image: redis:6.2-alpine
-    container_name: redis
+    container_name: name_redis
     ports:
       - "6379:6379"
 
