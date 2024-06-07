@@ -13,6 +13,7 @@ services:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
     image: name_django
+    restart: always
     container_name: django
     depends_on:
       - postgres
@@ -32,6 +33,7 @@ services:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
     image: name_postgres
+    restart: always
     container_name: postgres
     volumes:
       - local_postgres_data:/var/lib/postgresql/data:cached
@@ -44,6 +46,7 @@ services:
       context: .
       dockerfile: ./compose/production/nginx/Dockerfile
     image: name_nginx
+    restart: always
     container_name: nginx
     volumes:
       - static_volume:/home/app/web/src/static
@@ -57,6 +60,7 @@ services:
 
   redis:
     image: redis:6.2-alpine
+    restart: always
     container_name: name_redis
     ports:
       - "6379:6379"
@@ -66,6 +70,8 @@ services:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
     command: celery -A config worker -l info
+    container_name: name_celery
+    restart: always
     volumes:
       - .:/app:cached
     env_file:
@@ -80,6 +86,8 @@ services:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
     command: celery -A config beat -l info
+    container_name: name_celery_beat
+    restart: always
     volumes:
       - .:/app:cached
     env_file:

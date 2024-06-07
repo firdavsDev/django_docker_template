@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+from .swagger_conf import *  # noqa
+
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = os.environ["SECRET_KEY"]
@@ -53,14 +55,6 @@ REST_FRAMEWORK = {
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
 CORS_URLS_REGEX = r"^/api/.*$"
 
-# By Default swagger ui is available only to admin user(s). You can change permission classes to change that
-# See more configuration options at https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
-SPECTACULAR_SETTINGS = {
-    "TITLE": "Project API",
-    "DESCRIPTION": "Documentation of API endpoints of Project",
-    "VERSION": "1.0.0",
-    "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"],
-}
 
 AUTH_USER_MODEL = "account.User"
 
@@ -176,41 +170,27 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
-# Define the log handlers
-handlers = {
-    'console': {
-        'level': 'WARNING',
-        'class': 'logging.StreamHandler',
-    },
-    'file': {
-        'level': 'WARNING',
-        'class': 'logging.handlers.RotatingFileHandler',
-        'filename': 'logs/django.log',
-        'formatter': 'verbose',
-        'maxBytes': 1024 * 1024 * 10,  # 10 MB
-        'backupCount': 5,  # Number of backup log files to keep
-    },
-}
-
-
-# Define the log formatters
-formatters = {
-    'verbose': {
-        'format': '%(levelname)s %(asctime)s %(name)s %(message)s',
-    },
-}
-
-# Configure logging
+# log file
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': handlers,
-    'formatters': formatters,
-    'root': {
-        'level': 'INFO',
-        'handlers': ['console', 'file'],
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
+    },
+    "handlers": {
+        "file": {
+            "level": "ERROR",
+            "class": "logging.FileHandler",
+            "formatter": "file",
+            "filename": "errors.log",
+        },
+    },
+    "loggers": {
+        "": {"level": "ERROR", "handlers": ["file"]},
+        "django.request": {"level": "INFO", "handlers": ["file"]},
     },
 }
+
 
 CACHES = {
     'default': {

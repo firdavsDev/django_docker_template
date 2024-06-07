@@ -27,7 +27,7 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:8000",
 ] + ALLOWED_IPS_AND_DOMAINS
 
-
+# Swagger settings
 SPECTACULAR_SETTINGS["SERVERS"] = [  # noqa: F405
     {"url": f"https://{SERVER_DOMAIN}", "description": "Production server"},
 ]
