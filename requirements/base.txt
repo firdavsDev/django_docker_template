@@ -11,7 +11,7 @@ django-filter==21.1 # https://pypi.org/project/django-filter/
 django-debug-toolbar==3.5.0 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
 
 # Django REST Framework
-djangorestframework==3.14.0  # https://github.com/encode/django-rest-framework
+djangorestframework==3.15.1  # https://github.com/encode/django-rest-framework
 django-cors-headers==4.1.0  # https://github.com/adamchainz/django-cors-headers
 djangochannelsrestframework==0.3.0 # https://djangochannelsrestframework.readthedocs.io/en/latest/
 
